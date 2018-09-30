@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block ahmed1 %}
+    <li class="active"><a href="{{ path('affichehomepersonne') }}">Home</a></li>
+
+    <li><a href="{{ path('showinformation') }}">Profile</a></li>
+    <li><a href="{{ path('updatecandiself') }}">Modifier Profile</a></li>
+
+    <li><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
+
+
+{% endblock %}
+
+
+
+

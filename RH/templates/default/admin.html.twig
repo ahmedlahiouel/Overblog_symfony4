@@ -1,0 +1,171 @@
+{% extends 'layoutadmin.html.twig' %}
+{% block ahmed1 %}
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <form method="post" action="{{ path('rechuser') }}">
+
+                <li class="sidebar-search">
+                    <div class="input-group custom-search-form">
+
+                        <input name="nom" type="text" class="form-control" placeholder="chercher...">
+                        <span class="input-group-btn">
+       <button type="submit" value="Search " class="btn btn-default"/>
+                                               <i class="fa fa-search"></i>
+                            </button>
+
+
+
+                                </span>
+
+                        </div>
+
+                        <!-- /input-group -->
+                    </li>
+                </form>
+                <li>
+                    <a href="#">Gestion des Candidat
+                    </a>
+                    <a href="{{ path('gestionquestion') }}">Gestion Questions
+                    </a>
+                    <!-- /.nav-second-level -->
+                </li>
+
+
+
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block ahmed %}
+    <h1 class="page-header"> Liste Des Utilisateurs </h1>
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice">
+            {{ message }}
+
+
+        </div>
+    {% endfor %}
+
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Cin
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Nom
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Prenom
+                </th>
+               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                         aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Tl
+                </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                         aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Date
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Email
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">Etat
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">Modifier
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;"> Voir
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;"> Generer Pdf
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;"> Generer Word
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in modeles %}
+
+
+                <tr role="row" class="odd">
+                    <td>{{ model.cin }}</td>
+                    <td>{{ model.username }}</td>
+                    <td>{{ model.prenom}}</td>
+                    <td>{{ model.tl}}</td>
+                    <td>{{model.date|date('Y-m-d')}}</td>
+
+                    <td>{{ model.email }}</td>
+                    {% if model.enabled!=1 %}
+                        <td> not active <br>
+                            <a href="{{ path('Active', {'id': model.id }) }}"
+                               onclick="return confirm('are u sure?')">Activer</a>
+
+                        </td>
+                    {% else %}
+                        <td> Active <br>
+                            <a href="{{ path('Desactive', {'id': model.id }) }}"
+                               onclick="return confirm('are u sure?')">Desctiver</a>
+
+                        </td>
+
+
+                    {% endif %}
+                    <td><a href="{{ path('updateuser', {'id': model.id }) }}">Modifier</a>
+                    </td>
+
+                    <td><a href="{{ path('Affich', {'id': model.id }) }}">Tous Les Details</a>
+                    </td>
+                    <td><a href="{{ path('Pdf', {'id': model.id }) }}">Generer Pdf</a>
+                    </td>
+                    <td><a href="{{ path('Word', {'id': model.id }) }}">Generer Word</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Cin</th>
+
+                <th rowspan="1" colspan="1">Nom</th>
+                <th rowspan="1" colspan="1">Prenom</th>
+                <th rowspan="1" colspan="1">Tl</th>
+                <th rowspan="1" colspan="1">Date</th>
+
+                <th rowspan="1" colspan="1">Email</th>
+                <th rowspan="1" colspan="1">Etat</th>
+                <th rowspan="1" colspan="1">Modifier</th>
+
+                <th rowspan="1" colspan="1">Voir</th>
+                <th rowspan="1" colspan="1">Generer Pdf</th>
+                <th rowspan="1" colspan="1">Generer Word</th>
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </div>
+
+
+    <form action="{{ path('crerrcomptecan') }}">
+        <input type="submit" value="Ajouter Candidat" class="btn btn-lg btn-success btn-block"
+               style="width: 150px height: 150px"/>
+    </form>
+
+    </div>
+
+{% endblock %}

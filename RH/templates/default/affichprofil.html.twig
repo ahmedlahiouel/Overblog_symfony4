@@ -1,0 +1,597 @@
+{% extends 'layoutadmin.html.twig' %}
+{% block ahmed1 %}
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <form method="post" action="{{ path('rechuser') }}">
+
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+
+                            <input name="nom" type="text" class="form-control" placeholder="chercher...">
+                            <span class="input-group-btn">
+       <button type="submit" value="Search " class="btn btn-default"/>
+
+
+                                </button>
+
+
+
+                                </span>
+
+                        </div>
+
+                        <!-- /input-group -->
+                    </li>
+                </form>
+                <li>
+                    <a href="{{ path('gestionuser') }}">Gestion des Candidat
+                    </a>
+                    <a href="{{ path('gestionquestion') }}">Gestion Questions
+                    </a>
+                    <!-- /.nav-second-level -->
+                </li>
+
+
+
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block ahmed %}
+
+        <h1 class="page-header"> Profil {{ modeles.username }} {{ modeles.prenom}}  </h1>
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ modeles.username }} {{ modeles.prenom}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic"  src="{{ asset('profil.png') }}" class="img-circle img-responsive"> </div>
+
+
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>Situation familiale :</td>
+                                    <td>{{ modeles.situationfamiliale }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nombre enfants a charge :</td>
+                                    <td>{{ modeles.nbenfants }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date et lieu naissance :  </td>
+                                    <td>{{modeles.date|date('Y-m-d')}} a {{ modeles.lieunaissance }}</td>
+                                </tr>
+
+                                <tr>
+                                <tr>
+                                    <td>Nationalité : </td>
+                                    <td>{{ modeles.nationalite }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Numero Telephone Mobile </td>
+                                    <td>{{ modeles.tl }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Fixe : </td>
+                                    <td>{{ modeles.numtlfixe }}</td>
+                                </tr>
+                                <tr>
+                                <td>Adresse email :  </td>
+                                <td>
+                                    {{ modeles.email }}
+                                </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Adresse Personnelle N : </td>
+                                    <td>{{ modeles.adressepersonelle }}</td>
+                                </tr><tr>
+                                    <td>Rue : </td>
+                                    <td>{{ modeles.rue }}</td>
+                                </tr><tr>
+                                    <td>Cité : </td>
+                                    <td>{{ modeles.cite }}</td>
+                                </tr><tr>
+                                    <td>Ville : </td>
+                                    <td>{{ modeles.ville }}</td>
+                                </tr><tr>
+                                    <td>Code Postal  : </td>
+                                    <td>{{ modeles.codepostal }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Gouvernorat  : </td>
+                                    <td>{{ modeles.gouvernorat }}</td>
+                                </tr><tr>
+                                    <td>Pays  : </td>
+                                    <td>{{ modeles.pays }}</td>
+                                </tr><tr>
+                                    <td>Cin  : </td>
+                                    <td>{{ modeles.cin }}</td>
+                                </tr><tr>
+                                    <td>N CNSS  : </td>
+                                    <td>{{ modeles.numcnss }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="pull-right">
+                            <a href= "{{ path('updateuser', {'id': modeles.id }) }}" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                        </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div><br>
+    <font color="#16B84E"> <h2>  Cursus scolaire et universitaire </h2></font>
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Etablissement
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Date Entrée
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Date Sortie
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Diplome Obtenu
+                </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                         aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Specialité
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in modeles2 %}
+
+
+                <tr role="row" class="odd">
+                    <td>{{ model.etablissement }}</td>
+                    <td>{{model.DateEntree|date('Y-m-d')}}</td>
+                    <td>{{model.DateSortie|date('Y-m-d')}}</td>
+                    <td>{{ model.diplome}}</td>
+
+                    <td>{{ model.specialite }}</td>
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Etablissement</th>
+
+                <th rowspan="1" colspan="1">Date Entrée</th>
+                <th rowspan="1" colspan="1">Date Sortie</th>
+                <th rowspan="1" colspan="1">Diplome Obtenu</th>
+                <th rowspan="1" colspan="1">Specialité</th>
+
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <br>
+    <font color="#16B84E"> <h2>  Stages  </h2></font>
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Etablissement
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Date Debut
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Date fin
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Objet Description
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in stages %}
+
+
+                <tr role="row" class="odd">
+                    <td>{{ model.etablissement }}</td>
+                    <td>{{model.Debut|date('Y-m-d')}}</td>
+                    <td>{{model.fin|date('Y-m-d')}}</td>
+                    <td>{{ model.ObjetDescription}}</td>
+
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Etablissement</th>
+
+                <th rowspan="1" colspan="1">Date Debut</th>
+                <th rowspan="1" colspan="1">Date Fin</th>
+                <th rowspan="1" colspan="1">Objet Description</th>
+
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <font color="#16B84E"> <h2>  Emplois </h2></font>
+
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Date Embauche
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Date Depart
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Etablissement
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Lieu
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Secteur
+                </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                         aria-label="Engine version: activate to sort column ascending" style="width: 155px;">FOnction Exercée
+                </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                         aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Salaire Net
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Motif De Depart
+                </th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in listeemplois %}
+
+
+                <tr role="row" class="odd">
+                    <td>{{model.embauche|date('Y-m-d')}}</td>
+                    <td>{{model.depart|date('Y-m-d')}}</td>
+
+                    <td>{{ model.etablissement }}</td>
+                    <td>{{ model.lieu}}</td>
+                    <td>{{ model.secteur}}</td>
+                    <td>{{ model.fonction}}</td>
+                    <td>{{ model.SalaireNet}}</td>
+                    <td>{{ model.MotifDepart}}</td>
+
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Date Embauche</th>
+                <th rowspan="1" colspan="1">Date Depart</th>
+
+                <th rowspan="1" colspan="1">Etablissement</th>
+
+                <th rowspan="1" colspan="1">Lieu</th>
+                <th rowspan="1" colspan="1">Secteur</th>
+                <th rowspan="1" colspan="1">FOnction Exercée</th>
+                <th rowspan="1" colspan="1">Salaire net</th>
+                <th rowspan="1" colspan="1">Motif De Depart</th>
+
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <font color="#16B84E"> <h2>  Avantages Percus Lors De La Derniére Expérience </h2></font>
+
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Avantage
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Nom De l'avantage
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Frequence
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Combien?
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Formule de Calcul
+                </th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in listeavantages %}
+
+
+                <tr role="row" class="odd">
+
+                    <td>{{ model.avantage }}</td>
+                    <td>{{ model.NomAvantage}}</td>
+                    <td>{{ model.frequence}}</td>
+                    <td>{{ model.combien}}</td>
+                    <td>{{ model.FormuleCalcul}}</td>
+
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Avantage</th>
+                <th rowspan="1" colspan="1">Nom de L'avantage</th>
+
+                <th rowspan="1" colspan="1">Frequence</th>
+
+                <th rowspan="1" colspan="1">Combien</th>
+                <th rowspan="1" colspan="1">Formule de Calcul</th>
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <font color="#16B84E"> <h2>  Langues maitrisées </h2></font>
+
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Langues
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Niveau 1:Debutant
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Niveau 2:lue uniquement
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Niveau 3:lue et parlée
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Niveau 4:lue,parlée et ecrite
+                </th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in listelangues %}
+
+
+                <tr role="row" class="odd">
+
+                {% if model.niveaux == 'Débutant' %}
+                    <td>{{ model.langues }}</td>
+
+                    <td><img src="{{ asset('oui.png') }}"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% elseif model.niveaux == 'lue uniquement' %}
+                    <td>{{ model.langues }}</td>
+                    <td></td>
+                    <td><img src="{{ asset('oui.png') }}"></td>
+                    <td></td>
+                    <td></td>
+
+                {% elseif model.niveaux == 'lue et parlée' %}
+                    <td>{{ model.langues }}</td>
+                    <td></td>
+                    <td></td>
+                    <td><img src="{{ asset('oui.png') }}"></td>
+
+                    <td></td>
+{% else %}
+                    <td>{{ model.langues }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><img src="{{ asset('oui.png') }}"></td>
+{% endif %}
+                </tr>
+
+
+
+                    {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Languages</th>
+                <th rowspan="1" colspan="1">Niveau 1:Debutant</th>
+
+                <th rowspan="1" colspan="1">Niveau 2:lue uniquement</th>
+
+                <th rowspan="1" colspan="1">Niveau 3:lue et parlée</th>
+                <th rowspan="1" colspan="1">Niveau 4:lue,parlée et ecrite</th>
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <font color="#16B84E"> <h2>  References </h2></font>
+
+
+    <div class="box-body">
+
+
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Nom & Prenom
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Fonction
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Entreprise
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Coordonnées
+                </th>
+
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in listereference %}
+
+
+                <tr role="row" class="odd">
+
+                    <td>{{ model.NomPrenom }}</td>
+                    <td>{{ model.fonction}}</td>
+                    <td>{{ model.entreprise}}</td>
+                    <td>{{ model.coordonnees}}</td>
+
+
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Nom & Prenom</th>
+                <th rowspan="1" colspan="1">FOnction</th>
+
+                <th rowspan="1" colspan="1">Entreprise</th>
+
+                <th rowspan="1" colspan="1">Coordonnées</th>
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <font color="#16B84E"> <h2>  Reponse Sur Les Questions  </h2></font>
+
+
+    <div class="box-body">
+
+
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Question
+                </th>
+
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Type Question
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Reponse
+                </th>
+
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for model in reponses %}
+            <tr role="row" class="odd">
+                {% for m in model.Questions %}
+
+                   <td> {{ m.enance }} </td>
+                <td>    {{ m.type }}</td>
+                {% endfor %}
+
+      <td>      {{ model.rep }} </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Question</th>
+                <th rowspan="1" colspan="1">Type Question</th>
+
+                <th rowspan="1" colspan="1">Reponse</th>
+
+
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+        {% endblock %}

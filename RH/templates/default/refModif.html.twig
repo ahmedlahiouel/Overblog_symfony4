@@ -1,0 +1,137 @@
+{% extends "layoutadmin.html.twig" %}
+{% block ahmed1 %}
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <form method="post" action="{{ path('rechuser') }}">
+
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+
+                            <input name="nom" type="text" class="form-control" placeholder="chercher...">
+                            <span class="input-group-btn">
+       <button type="submit" value="Search " class="btn btn-default"/>
+                                               <i class="fa fa-search"></i>
+                                </button>
+
+
+
+                                </span>
+
+                        </div>
+
+                        <!-- /input-group -->
+                    </li>
+                </form>
+                <li>
+                    <a href="{{ path('gestionuser') }}">Gestion des Candidats
+                    </a>
+                    <a href="{{ path('gestionquestion') }}">Gestion Questions
+                    </a>
+
+                    <!-- /.nav-second-level -->
+                </li>
+
+
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block ahmed %}
+
+    <font color="#22427C"><h3> Modifier Candidat </h3></font>
+
+    <center xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+
+        {{ form_start(form) }}
+        <font color="#16B84E"> <h2> Modifier Stages </h2></font>
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic"  src="{{ asset('refe.png') }}" class="img-circle img-responsive"> </div>
+
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>             <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.nom_prenom) }}
+                </td>
+                <td>
+                    {{ form_widget(form.nom_prenom, { 'attr': {
+                        'placeholder': 'Tapez Nom Prenom'} }) }}
+                </td>
+            </tr>
+
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.fonction) }}
+                </td>
+                <td>
+                    {{ form_widget(form.fonction, { 'attr': {
+                        'placeholder': 'Tapez Fonction'} }) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.entreprise) }}
+                </td>
+                <td>
+                    {{ form_widget(form.entreprise, { 'attr': {
+                        'placeholder': 'Tapez Entreprise'} }) }}
+                </td>
+            </tr> <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.coordonnees) }}
+                </td>
+                <td>
+                    {{ form_widget(form.coordonnees, { 'attr': {
+                        'placeholder': 'Tapez Coordonnées'} }) }}
+                </td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+</tbody></table></div></div>/</div></div></div></div>        <br>
+
+        <div>
+            <input type="submit" value="Modifier"  class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px" />
+        </div>        {{ form_end(form) }}
+
+
+
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock ahmed %}

@@ -1,0 +1,149 @@
+{% extends "layoutadmin.html.twig" %}
+{% block ahmed1 %}
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <form method="post" action="{{ path('rechuser') }}">
+
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+
+                            <input name="nom" type="text" class="form-control" placeholder="chercher...">
+                            <span class="input-group-btn">
+       <button type="submit" value="Search " class="btn btn-default"/>
+                                               <i class="fa fa-search"></i>
+                                </button>
+
+
+
+                                </span>
+
+                        </div>
+
+                        <!-- /input-group -->
+                    </li>
+                </form>
+                <li>
+                    <a href="{{ path('gestionuser') }}">Gestion des Candidats
+                    </a>
+                    <a href="{{ path('gestionquestion') }}">Gestion Questions
+                    </a>
+
+                    <!-- /.nav-second-level -->
+                </li>
+
+
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block ahmed %}
+
+    <font color="#22427C"><h3> Ajouter Candidat </h3></font>
+
+    <center xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+
+        {{ form_start(form) }}
+        <font color="#16B84E"> <h2> Formulaire Cursus </h2></font>
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table >
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.etablissement) }}
+                </td>
+                <td>
+                    {{ form_widget(form.etablissement, { 'attr': {
+                        'placeholder': 'Tapez Etablissement'} }) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.date_entree) }}
+                </td>
+                <td>
+                    {{ form_widget(form.date_entree) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.date_sortie) }}
+                </td>
+                <td>
+                    {{ form_widget(form.date_sortie) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.diplome) }}
+                </td>
+                <td>
+                    {{ form_widget(form.diplome, { 'attr': {
+                        'placeholder': 'Tapez Diplome'} }) }}
+                </td>
+            </tr>
+
+
+
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.specialite) }}
+                </td>
+                <td>
+                    {{ form_widget(form.specialite, { 'attr': {
+                        'placeholder': 'Tapez Specialité '} }) }}
+                </td>
+            </tr>
+
+
+
+
+
+
+
+        </table>
+        <br>
+       <table>
+           <tr>
+               <td> Add : </td>
+               <td>
+        <div>
+            <input type="submit" value="Ajouter"  class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px" />
+        </div>
+                   {{ form_end(form) }}
+
+               </td>
+           </tr> <br> <tr>
+               <td> Add Stages  </td>
+               <td>  <form action="{{ path('Addstage', {'id': id }) }}">
+            <input type="submit" value="Stages" class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px"/>
+                   </form></td></tr><tr> <td> Fin Session  </td><td><form action="{{ path('gestionuser') }}">
+                       <input type="submit" value=" Fin " class="btn btn-lg btn-success btn-block"
+                              style="width: 120px ;height: 50px"/></form> </td>
+           </tr>
+       </table>
+
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock ahmed %}

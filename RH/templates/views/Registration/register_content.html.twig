@@ -1,0 +1,76 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<center xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {{ form_start(form, {'method': 'post', 'action': path('crerrcomptecan'), 'attr': {'class': 'crerrcomptecan'}}) }}
+  <font color="#16B84E"> <h2> Formulaire Données Personelles</h2></font>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic"  src="{{ asset('profil.png') }}" class="img-circle img-responsive"> </div>
+
+
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+        <tr margin-bottom: 2px;>
+            <td>
+                {{ form_label(form.username) }}
+            </td>
+            <td>
+                {{ form_widget(form.username, { 'attr': {
+                    'placeholder': 'Tapez Nom'} }) }}
+            </td>
+        </tr>
+        <tr margin-bottom: 2px;>
+            <td>
+                {{ form_label(form.prenom) }}
+            </td>
+            <td>
+                {{ form_widget(form.prenom, { 'attr': {
+                    'placeholder': 'Tapez Prenom'} }) }}
+            </td>
+        </tr>
+
+
+
+
+        <tr margin-bottom: 2px;>
+        <td>
+            {{ form_label(form.tl) }}
+        </td>
+        <td>
+            {{ form_widget(form.tl, { 'attr': {
+                'placeholder': 'Tapez  Telephone'} }) }}
+        </td>
+        </tr>
+
+        <tr margin-bottom: 2px;>
+            <td>
+                {{ form_label(form.email) }}
+            </td>
+            <td>
+                {{ form_widget(form.email, { 'attr': {
+                    'placeholder': 'Tapez Email'} }) }}
+            </td>
+        </tr>
+
+
+
+</tbody></table></div></div></div></div></div></div>
+
+
+    <br>
+    <div>
+        <input type="submit" value="Add"  class="btn btn-lg btn-success btn-block"
+               style="width: 120px ;height: 50px" />
+    </div>
+    {{ form_end(form) }}
+</center>

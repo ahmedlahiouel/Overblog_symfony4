@@ -1,0 +1,763 @@
+{% extends 'layoutemploye.html.twig' %}
+
+{% block ahmed1 %}
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <li><a href="{{ path('affichehomepersonne') }}">Home</a></li>
+
+    <li><a href="{{ path('showinformation') }}">Profile</a></li>
+    <li  class="active" ><a href="{{ path('updatecandiself') }}">Modifier Profile</a></li>
+
+    <li><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% trans_default_domain 'FOSUserBundle' %}
+    <center>
+        {{ form_start(form) }}
+        <font color="#16B84E"> <h2> Modification Données Personelles</h2></font>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic"  src="{{ asset('profil.png') }}" class="img-circle img-responsive"> </div>
+
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>            <tr>
+                <td>
+                    {{ form_label(form.username) }}
+                </td>
+                <td>
+                    {{ form_widget(form.username, { 'attr': {
+                        'placeholder': 'Tapez Nom'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.prenom) }}
+                </td>
+                <td>
+                    {{ form_widget(form.prenom, { 'attr': {
+                        'placeholder': 'Tapez Prenom'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.situationfamiliale) }}
+                </td>
+                <td>
+                    {{ form_widget(form.situationfamiliale) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.nbenfants) }}
+                </td>
+                <td>
+                    {{ form_widget(form.nbenfants) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.date) }}
+                </td>
+                <td>
+                    {{ form_widget(form.date) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.lieunaissance) }}
+                </td>
+                <td>
+                    {{ form_widget(form.lieunaissance, { 'attr': {
+                        'placeholder': 'Tapez Lieu Naissance'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.nationalite) }}
+                </td>
+                <td>
+                    {{ form_widget(form.nationalite, { 'attr': {
+                        'placeholder': 'Tapez Nationalité'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.tl) }}
+                </td>
+                <td>
+                    {{ form_widget(form.tl, { 'attr': {
+                        'placeholder': 'Tapez  Telephone'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.numtlfixe) }}
+                </td>
+                <td>
+                    {{ form_widget(form.numtlfixe, { 'attr': {
+                        'placeholder': 'Tapez Telephone Fixe'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.email) }}
+                </td>
+                <td>
+                    {{ form_widget(form.email, { 'attr': {
+                        'placeholder': 'Tapez Email'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.adressepersonelle) }}
+                </td>
+                <td>
+                    {{ form_widget(form.adressepersonelle, { 'attr': {
+                        'placeholder': 'Tapez Adress Personelle'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.rue) }}
+                </td>
+                <td>
+                    {{ form_widget(form.rue, { 'attr': {
+                        'placeholder': 'Tapez Rue'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.cite) }}
+                </td>
+                <td>
+                    {{ form_widget(form.cite, { 'attr': {
+                        'placeholder': 'Tapez Cité'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.ville) }}
+                </td>
+                <td>
+                    {{ form_widget(form.ville, { 'attr': {
+                        'placeholder': 'Tapez Ville'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.codepostal) }}
+                </td>
+                <td>
+                    {{ form_widget(form.codepostal, { 'attr': {
+                        'placeholder': 'Tapez Code Postal'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.gouvernorat) }}
+                </td>
+                <td>
+                    {{ form_widget(form.gouvernorat, { 'attr': {
+                        'placeholder': 'Tapez Gouvernorat'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.pays) }}
+                </td>
+                <td>
+                    {{ form_widget(form.pays, { 'attr': {
+                        'placeholder': 'Tapez Pays'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.cin) }}
+                </td>
+                <td>
+                    {{ form_widget(form.cin, { 'attr': {
+                        'placeholder': 'Tapez Cin'} }) }}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    {{ form_label(form.numcnss) }}
+                </td>
+                <td>
+                    {{ form_widget(form.numcnss, { 'attr': {
+                        'placeholder': 'Tapez Numero Cnss'} }) }}
+                </td>
+            </tr>
+
+
+</tbody></table></div></div></div></div></div></div>
+
+
+        <br>
+        <div>
+            <input type="submit" value="Modifier"  class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px" />
+        </div>
+        {{ form_end(form) }}
+        <font color="#16B84E"> <h2> Modification Des Cursus </h2></font>
+
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Etablissement
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Date Entrée
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Date Sortie
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Diplome Obtenu
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Specialité
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Modifier
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Supprimer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for model in modeles %}
+
+
+                    <tr role="row" class="odd">
+                        <td>{{ model.etablissement }}</td>
+                        <td>{{model.DateEntree|date('Y-m-d')}}</td>
+                        <td>{{model.DateSortie|date('Y-m-d')}}</td>
+                        <td>{{ model.diplome}}</td>
+
+                        <td>{{ model.specialite }}</td>
+
+                        <td><a href="{{ path('updatcursuscandi', {'id': model.id}) }}">Modifier</a>
+                        </td>
+
+                        <td><a href="{{ path('deletecursuscandi', {'id': model.id}) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Etablissement</th>
+
+                    <th rowspan="1" colspan="1">Date Entrée</th>
+                    <th rowspan="1" colspan="1">Date Sortie</th>
+                    <th rowspan="1" colspan="1">Diplome Obtenu</th>
+                    <th rowspan="1" colspan="1">Specialité</th>
+
+                    <th rowspan="1" colspan="1">Modifier</th>
+                    <th rowspan="1" colspan="1">Supprimer</th>
+
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <form action="{{ path('Addcursuscandi') }}">
+            <input type="submit" value="Ajouter Cursus" class="btn btn-lg btn-success btn-block"
+                   style="width: 150px height: 150px"/>
+        </form>
+
+        <font color="#16B84E"> <h2> Modification Des Stages </h2></font>
+
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Etablissement
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Date Debut
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Date Fin
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Objet Et Description
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Modifier
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Supprimer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for model in listestage %}
+
+
+                    <tr role="row" class="odd">
+                        <td>{{ model.etablissement }}</td>
+                        <td>{{model.Debut|date('Y-m-d')}}</td>
+                        <td>{{model.fin|date('Y-m-d')}}</td>
+                        <td>{{ model.ObjetDescription}}</td>
+
+
+                        <td><a href="{{ path('updatstagecandi', {'id': model.id}) }}">Modifier</a>
+                        </td>
+
+                        <td><a href="{{ path('deletestagecandi', {'id': model.id}) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Etablissement</th>
+
+                    <th rowspan="1" colspan="1">Date Debut</th>
+                    <th rowspan="1" colspan="1">Date Fin</th>
+                    <th rowspan="1" colspan="1">Objet Et Description</th>
+
+                    <th rowspan="1" colspan="1">Modifier</th>
+                    <th rowspan="1" colspan="1">Supprimer</th>
+
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <form action="{{ path('AddstageModifcandi') }}">
+            <input type="submit" value="Ajouter Stage" class="btn btn-lg btn-success btn-block"
+                   style="width: 150px height: 150px"/>
+        </form>
+        <font color="#16B84E"> <h2> Modification Des Emplois </h2></font>
+
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Date Embauche
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Date Depart
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Etablissement
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Lieu
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Secteur
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">FOnction Exercée
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Salaire Net
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Motif De Depart
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Modifier
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Supprimer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for model in listeemplois %}
+
+
+                    <tr role="row" class="odd">
+                        <td>{{model.embauche|date('Y-m-d')}}</td>
+                        <td>{{model.depart|date('Y-m-d')}}</td>
+
+                        <td>{{ model.etablissement }}</td>
+                        <td>{{ model.lieu}}</td>
+                        <td>{{ model.secteur}}</td>
+                        <td>{{ model.fonction}}</td>
+                        <td>{{ model.SalaireNet}}</td>
+                        <td>{{ model.MotifDepart}}</td>
+
+
+                        <td><a href="{{ path('updatemploiscandi', {'id': model.id}) }}">Modifier</a>
+                        </td>
+
+                        <td><a href="{{ path('deleteemploiscandi', {'id': model.id}) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Date Embauche</th>
+                    <th rowspan="1" colspan="1">Date Depart</th>
+
+                    <th rowspan="1" colspan="1">Etablissement</th>
+
+                    <th rowspan="1" colspan="1">Lieu</th>
+                    <th rowspan="1" colspan="1">Secteur</th>
+                    <th rowspan="1" colspan="1">FOnction Exercée</th>
+                    <th rowspan="1" colspan="1">Salaire net</th>
+                    <th rowspan="1" colspan="1">Motif De Depart</th>
+
+                    <th rowspan="1" colspan="1">Modifier</th>
+                    <th rowspan="1" colspan="1">Supprimer</th>
+
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <form action="{{ path('AddemploisModifcandi') }}">
+            <input type="submit" value="Ajouter Emplois" class="btn btn-lg btn-success btn-block"
+                   style="width: 150px height: 150px"/>
+        </form>
+        <font color="#16B84E"> <h2> Modification Avantages Percus Lors De La Derniére Expérience </h2></font>
+
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Avantage
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Nom De l'avantage
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Frequence
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Combien?
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Formule de Calcul
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Modifier
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Supprimer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for model in listeavantages %}
+
+
+                    <tr role="row" class="odd">
+
+                        <td>{{ model.avantage }}</td>
+                        <td>{{ model.NomAvantage}}</td>
+                        <td>{{ model.frequence}}</td>
+                        <td>{{ model.combien}}</td>
+                        <td>{{ model.FormuleCalcul}}</td>
+
+
+
+                        <td><a href="{{ path('updateavantacandi', {'id': model.id}) }}">Modifier</a>
+                        </td>
+
+                        <td><a href="{{ path('deleteavantacandi', {'id': model.id}) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Avantage</th>
+                    <th rowspan="1" colspan="1">Nom de L'avantage</th>
+
+                    <th rowspan="1" colspan="1">Frequence</th>
+
+                    <th rowspan="1" colspan="1">Combien</th>
+                    <th rowspan="1" colspan="1">Formule de Calcul</th>
+
+                    <th rowspan="1" colspan="1">Modifier</th>
+                    <th rowspan="1" colspan="1">Supprimer</th>
+
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <form action="{{ path('AddavantaModifcandi') }}">
+            <input type="submit" value="Ajouter Avantage" class="btn btn-lg btn-success btn-block"
+                   style="width: 150px height: 150px"/>
+        </form>
+        <font color="#16B84E"> <h2>  Langues maitrisées </h2></font>
+
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Langues
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Niveau 1:Debutant
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Niveau 2:lue uniquement
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Niveau 3:lue et parlée
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Niveau 4:lue,parlée et ecrite
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Modifier
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Supprimer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for model in listelangues %}
+
+
+                    <tr role="row" class="odd">
+
+                        {% if model.niveaux == 'Débutant' %}
+                            <td>{{ model.langues }}</td>
+
+                            <td><img src="{{ asset('oui.png') }}"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="{{ path('updateLanguecandi', {'id': model.id }) }}">Modifier</a>
+                            </td>
+
+                            <td><a href="{{ path('deletelanguecandi', {'id': model.id  }) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                            </td>
+
+                        {% elseif model.niveaux == 'lue uniquement' %}
+                            <td>{{ model.langues }}</td>
+                            <td></td>
+                            <td><img src="{{ asset('oui.png') }}"></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="{{ path('updateLanguecandi', {'id': model.id  }) }}">Modifier</a>
+                            </td>
+
+                            <td><a href="{{ path('deletelanguecandi', {'id': model.id }) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                            </td>
+
+                        {% elseif model.niveaux == 'lue et parlée' %}
+                            <td>{{ model.langues }}</td>
+                            <td></td>
+                            <td></td>
+                            <td><img src="{{ asset('oui.png') }}"></td>
+
+                            <td></td>
+                            <td><a href="{{ path('updateLanguecandi', {'id': model.id  }) }}">Modifier</a>
+                            </td>
+
+                            <td><a href="{{ path('deletelanguecandi', {'id': model.id }) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                            </td>
+
+                        {% else %}
+                            <td>{{ model.langues }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><img src="{{ asset('oui.png') }}"></td>
+                            <td><a href="{{ path('updateLanguecandi', {'id': model.id }) }}">Modifier</a>
+                            </td>
+
+                            <td><a href="{{ path('deletelanguecandi', {'id': model.id }) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                            </td>
+
+                        {% endif %}
+
+                    </tr>
+
+
+
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Languages</th>
+                    <th rowspan="1" colspan="1">Niveau 1:Debutant</th>
+
+                    <th rowspan="1" colspan="1">Niveau 2:lue uniquement</th>
+
+                    <th rowspan="1" colspan="1">Niveau 3:lue et parlée</th>
+                    <th rowspan="1" colspan="1">Niveau 4:lue,parlée et ecrite</th>
+                    <th rowspan="1" colspan="1">Modifier</th>
+                    <th rowspan="1" colspan="1">Supprimer</th>
+
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <form action="{{ path('AddlangueModifcandi') }}">
+            <input type="submit" value="Ajouter Langues" class="btn btn-lg btn-success btn-block"
+                   style="width: 150px height: 150px"/>
+        </form>
+        <font color="#16B84E"> <h2> Modification References </h2></font>
+
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Nom & Prenom
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Fonction
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;"> Entreprise
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Coordonnées
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Modifier
+                    </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                             aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Supprimer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {% for model in listereference %}
+
+
+                    <tr role="row" class="odd">
+
+                        <td>{{ model.NomPrenom }}</td>
+                        <td>{{ model.fonction}}</td>
+                        <td>{{ model.entreprise}}</td>
+                        <td>{{ model.coordonnees}}</td>
+
+
+
+
+                        <td><a href="{{ path('updatrefcandi', {'id': model.id}) }}">Modifier</a>
+                        </td>
+
+                        <td><a href="{{ path('deleterefcandi', {'id': model.id}) }}" onclick="return confirm('are u sure?')">Supprimer</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Nom & Prenom</th>
+                    <th rowspan="1" colspan="1">FOnction</th>
+
+                    <th rowspan="1" colspan="1">Entreprise</th>
+
+                    <th rowspan="1" colspan="1">Coordonnées</th>
+
+                    <th rowspan="1" colspan="1">Modifier</th>
+                    <th rowspan="1" colspan="1">Supprimer</th>
+
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <form action="{{ path('AddrefModifcandi') }}">
+            <input type="submit" value="Ajouter Reference" class="btn btn-lg btn-success btn-block"
+                   style="width: 150px height: 150px"/>
+        </form>
+
+
+
+    </center>
+
+
+{% endblock fos_user_content %}

@@ -1,0 +1,108 @@
+{% block fos_user_content %}
+    <div id="load">
+
+        <h2> Recherche D'emploie  </h2>
+        <center>
+            <div class="box-body">
+                Question : {{ enance }} <br>
+
+                <textarea id="response" name="reponse"
+                          rows="7" cols="50">
+  Vous pouvez écrire Votre réponse
+    </textarea>
+                <br>
+                <input type="submit" value="valider la reponse" id="val" class="btn btn-lg btn-success btn-block"
+                       style="width: 420px ;height: 50px"  /><br>
+                <input type="submit" value="passer au question suivante" id="pass" class="btn btn-lg btn-success btn-block"
+                       style="width: 420px ;height: 50px" /><br>
+                <form action="{{ path('vasi') }}">
+
+                <input type="submit" value="passer Etape Suivante" id="pass" class="btn btn-lg btn-success btn-block"
+                       style="width: 420px ;height: 50px" />
+                </form>
+                <script src
+                        ="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script
+                >
+
+
+                <script>
+                    $("#val").click(function (event) {
+                        event.preventDefault();
+
+                        if (confirm(" confirmer le choix de la reponse ")) {
+
+                            var quest = '{{ id }}';
+                            $.ajax({
+                                url: "{{ path('addreponserech') }}",
+                                type: 'POST',
+                                data: {'question': quest, 'value': $("#response").val()},
+                                dataType: 'json',
+//                            processData: false,
+
+                                success: function (result) {
+
+                                }
+                            });
+                            alert("Réponse  enregistrer clic sur passer ou Vous Pouvez encore le modifier ");
+
+
+                        }
+                    });
+
+
+                </script>
+                <script>
+                    $("#pass").click(function (event) {
+                        event.preventDefault();
+                        var tab = [];
+                        {% for m in nouv %}
+
+                        var xx ={{ m.id }};
+                        tab.push(xx);
+                        {% endfor %}
+                        {% if nouv is empty %}
+
+
+
+                        alert("Fin De Formulaire clique sur Passer ");
+
+
+
+
+
+                        {% else %}
+
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ path('pasrech') }}",
+                            data: {'nouvquest': tab},
+                            dataType: 'json',
+                            success: function (result, request) {
+                                var jsonTempStringified = JSON.stringify(result);
+                                var jsonTempStringifiedParsed = JSON.parse(jsonTempStringified);
+                                $("#load").empty();
+                                $("#load").html(jsonTempStringifiedParsed.data);
+
+                            }
+
+                        });
+
+
+
+
+                        {% endif %}
+
+
+
+                    });
+
+
+                </script>
+
+
+            </div>
+        </center>
+    </div>
+
+{% endblock fos_user_content %}

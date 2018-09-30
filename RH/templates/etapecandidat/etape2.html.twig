@@ -1,0 +1,127 @@
+{% extends 'layoutemploye.html.twig' %}
+
+{% block ahmed1 %}
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <li><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <font color="#22427C"><h3> Formulaire Candidat </h3></font>
+
+    <center xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+
+
+                                    {{ form_start(form) }}
+        <font color="#16B84E"> <h2> Ajouter Cursus </h2></font>
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic"  src="{{ asset('cursus.png') }}" class="img-circle img-responsive"> </div>
+
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>
+            <tr >
+                <td>
+                    {{ form_label(form.etablissement) }}
+                </td>
+                <td>
+                    {{ form_widget(form.etablissement, { 'attr': {
+                        'placeholder': 'Tapez Etablissement'} }) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.date_entree) }}
+                </td>
+                <td>
+                    {{ form_widget(form.date_entree) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.date_sortie) }}
+                </td>
+                <td>
+                    {{ form_widget(form.date_sortie) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.diplome) }}
+                </td>
+                <td>
+                    {{ form_widget(form.diplome, { 'attr': {
+                        'placeholder': 'Tapez Diplome'} }) }}
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td>
+                    {{ form_label(form.specialite) }}
+                </td>
+                <td>
+                    {{ form_widget(form.specialite, { 'attr': {
+                        'placeholder': 'Tapez Specialité '} }) }}
+                </td>
+            </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div></div>
+        <br>
+
+        <div>
+            <input type="submit" value="Ajouter"  class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px" />
+        </div>     {{ form_end(form) }} <br>
+        <form action="{{ path('etape3') }}">
+            <input type="submit" value="Passer" class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px"/>
+
+        </form>
+
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock fos_user_content %}
+
+
+
+
+
+
+

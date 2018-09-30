@@ -1,0 +1,157 @@
+{% extends 'layoutemploye.html.twig' %}
+
+{% block ahmed1 %}
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <li><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <font color="#22427C"><h3> Formulaire Candidat </h3></font>
+
+    <center xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+
+        {{ form_start(form) }}
+        <font color="#16B84E"> <h2> Ajouter Emplois </h2></font>
+        {% for message in app.flashes('success') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic"  src="{{ asset('emplois.png') }}" class="img-circle img-responsive"> </div>
+
+
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>
+
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.embauche) }}
+                </td>
+                <td>
+                    {{ form_widget(form.embauche) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.depart) }}
+                </td>
+                <td>
+                    {{ form_widget(form.depart) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.etablissement) }}
+                </td>
+                <td>
+                    {{ form_widget(form.etablissement, { 'attr': {
+                        'placeholder': 'Tapez Etablissement'} }) }}
+                </td>
+            </tr>
+
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.lieu) }}
+                </td>
+                <td>
+                    {{ form_widget(form.lieu, { 'attr': {
+                        'placeholder': 'Tapez Lieu'} }) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.secteur) }}
+                </td>
+                <td>
+                    {{ form_widget(form.secteur, { 'attr': {
+                        'placeholder': 'Tapez Secteur'} }) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.fonction) }}
+                </td>
+                <td>
+                    {{ form_widget(form.fonction, { 'attr': {
+                        'placeholder': 'Tapez Fonction exercée'} }) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.salaire_net) }}
+                </td>
+                <td>
+                    {{ form_widget(form.salaire_net, { 'attr': {
+                        'placeholder': 'Tapez Salaire Net'} }) }}
+                </td>
+            </tr>
+            <tr margin-bottom: 2px;>
+                <td>
+                    {{ form_label(form.motif_depart) }}
+                </td>
+                <td>
+                    {{ form_widget(form.motif_depart, { 'attr': {
+                        'placeholder': 'Tapez Motif De Depart'} }) }}
+                </td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+                                    </tbody></table></div></div></div></div>
+        <br>
+
+        <div>
+            <input type="submit" value="Ajouter"  class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px" />
+        </div>     {{ form_end(form) }}
+
+        <br>
+        <form action="{{ path('etape5') }}">
+            <input type="submit" value="Passer" class="btn btn-lg btn-success btn-block"
+                   style="width: 120px ;height: 50px"/>
+
+        </form>
+
+
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock fos_user_content %}
+
+
+
+
+
+
+
