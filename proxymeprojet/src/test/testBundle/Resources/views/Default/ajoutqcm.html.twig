@@ -1,0 +1,258 @@
+{% extends "testtestBundle::layoutusertache.html.twig" %}
+{% block ahmed1 %}
+    <li><a href="{{ path('affichehomesociete') }}">Home</a></li>
+
+    <li><a href="{{ path('gestionoffreuser') }}">Manage OFFERS</a></li>
+    <li><a href="{{ path('desplay_view_postulation_user') }}">Manage POSTULATIONS</a></li>
+    <li class="active"><a href="{{ path('affichqcmsoc') }}">Management qcm</a></li>
+    <li><a href="{{ path('desplay_rendez_vous') }}">Appointment management</a></li>
+
+    <li><a href="{{ path('editcomptesoc') }}">EDIT COMPTE</a></li>
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <h1> ADD Qcm For job offer </h1>
+
+    <center>
+        <form name="question" id="ahmedform" method="post">
+            <table>
+                <tr>
+                    <td><label for="mon_id">Id du QCM:</label></td>
+                    <td><input id="monidqcm" type="number"/></td>
+                </tr>
+                <tr>
+                    <td><label for="mon_id2">Enancé Qcm:</label></td>
+                    <td><input id="nomqcm" type="text"/></td>
+                </tr>
+                <tr>
+                    <td><label for="mon_id3">note accepté:</label></td>
+                    <td><input id="note" type="number"/></td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="val" value=" creer   ce   qcm  "/></td>
+
+                    <td><input type="button" id="filldetails" onclick="addFields()" value="ajouter question "/>
+                <tr>
+                    <td><input type="button" id="ajoutquest" value=" valider ce question  "/></td>
+                    <td><input type="button" id="libre" value=" terminer pour ce QCM  "/></td>
+                </tr>
+            </table>
+            <div id="container"/>
+
+
+        </form>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+        <script>
+            $("#val").click(function (event) {
+                event.preventDefault();
+                if (document.getElementById("monidqcm").value == "") {
+                    alert("champ vide verifier");
+                }
+                else if (document.getElementById("nomqcm").value == "") {
+                    alert("champ vide verifier");
+                }
+                else if (document.getElementById("note").value == "") {
+                    alert("champ vide verifier");
+                }
+                else {
+
+                    if (confirm("Voulez-vous confirmer ajout de ce qcm !! ?")) {
+                        var numberqcm = document.getElementById("monidqcm").value;
+                        var enanc = document.getElementById("nomqcm").value;
+                        var number = document.getElementById("note").value;
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ path('my_symfony_route') }}",
+                            data: ({numbreqcm: numberqcm, enance: enanc, numberpasse: number}),
+                            dataType: 'json',
+                            success: function (data) {
+
+
+                            }
+                        });
+                        alert("qcm ajouter veuillez saisie les question pour ce qcm");
+
+
+                    }
+                }
+            });
+
+
+        </script>
+        <script type='text/javascript'>
+            function addFields() {
+
+                // Number of inputs to create
+                // Container <div> where dynamic content will be placed
+                var container = document.getElementById("container");
+                // Clear previous contents of the container
+                while (container.hasChildNodes()) {
+                    container.removeChild(container.lastChild);
+                }
+                // Append a node with a random text
+                // Create an <input> element, set its type and name attributes
+                container.appendChild(document.createTextNode("question"));
+
+                var inputquest = document.createElement("input");
+                inputquest.type = "text";
+                inputquest.name = "question";
+                inputquest.id = "question";
+                container.appendChild(inputquest);
+                container.appendChild(document.createElement("br"));
+
+                container.appendChild(document.createTextNode("id qcm"));
+
+                var inputid = document.createElement("input");
+                inputid.type = "number";
+                inputid.name = "qcm";
+                inputid.id = "qcm";
+                container.appendChild(inputid);
+                container.appendChild(document.createElement("br"));
+                container.appendChild(document.createTextNode("reponse 1"));
+
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "reponse1";
+                input.id = "reponse1";
+                container.appendChild(input);
+                container.appendChild(document.createElement("br"));
+                container.appendChild(document.createTextNode("reponse 2 "));
+
+                var input2 = document.createElement("input");
+                input2.type = "text";
+                input2.name = "reponse2";
+                input2.id = "reponse2";
+                container.appendChild(input2);
+                container.appendChild(document.createElement("br"));
+                container.appendChild(document.createTextNode("reponse 3 "));
+
+                var input3 = document.createElement("input");
+                input3.type = "text";
+                input3.name = "reponse3";
+                input3.id = "reponse3";
+                container.appendChild(input3);
+                container.appendChild(document.createElement("br"));
+
+
+                container.appendChild(document.createTextNode("reponse exacte "));
+                var input5 = document.createElement("input");
+                input5.type = "text";
+                input5.name = "reponseexacte";
+                input5.id = "reponseex";
+
+                container.appendChild(input5);
+
+            }
+
+        </script>
+        <script>
+            $("#ajoutquest").click(function (event) {
+                event.preventDefault();
+                if (document.getElementById("qcm").value == "") {
+                    alert("champ vide verifier");
+                }
+                else if (document.getElementById("question").value == "") {
+                    alert("champ vide verifier");
+                }
+                else if (document.getElementById("reponse1").value == "") {
+                    alert("champ vide verifier");
+                }
+                else if (document.getElementById("reponse2").value == "") {
+                    alert("champ vide verifier");
+                }
+                else if (document.getElementById("reponse3").value == "") {
+                    alert("champ vide verifier");
+                }
+                else if (document.getElementById("reponseex").value == "") {
+                    alert("champ vide verifier");
+                }
+
+
+                else {
+
+                    if (confirm("Voulez-vous confirmer ajout du question pour ce qcm !! ?")) {
+                        var numberqcm = document.getElementById("qcm").value;
+                        var enanc = document.getElementById("question").value;
+                        var rep1 = document.getElementById("reponse1").value;
+                        var rep2 = document.getElementById("reponse2").value;
+                        var rep3 = document.getElementById("reponse3").value;
+                        var repcorr = document.getElementById("reponseex").value;
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ path('my_symfony_route2') }}",
+                            data: ({
+                                numbreqcm: numberqcm,
+                                enance: enanc,
+                                repp1: rep1,
+                                repp2: rep2,
+                                repp3: rep3,
+                                reppcorect: repcorr
+                            }),
+                            dataType: 'json',
+                            success: function (data) {
+
+
+                            }
+                        });
+                        document.getElementById("question").value = "";
+                        document.getElementById("reponse1").value = "";
+                        document.getElementById("reponse2").value = "";
+                        document.getElementById("reponse3").value = "";
+                        document.getElementById("reponseex").value = "";
+
+
+                    }
+                }
+            });
+
+
+        </script>
+
+        <script>
+            $("#libre").click(function (event) {
+                event.preventDefault();
+
+                if (confirm("Voulez-vous terminer ce qcm !! ?")) {
+                    document.getElementById("monidqcm").value = "";
+                    document.getElementById("nomqcm").value = "";
+                    document.getElementById("note").value = "";
+                    document.getElementById("question").value = "";
+                    document.getElementById("reponse1").value = "";
+                    document.getElementById("reponse2").value = "";
+                    document.getElementById("reponse3").value = "";
+                    document.getElementById("reponseex").value = "";
+                    document.getElementById("qcm").value = "";
+
+
+                }
+
+            });
+
+
+        </script>
+
+
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock fos_user_content %}

@@ -1,0 +1,11 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<center>
+    <div class="fos_user_user_show">
+        <table>
+            <h1>Modification avec succées</h1> <br/>
+            <tr><td>{{ 'profile.show.username'|trans }}:  </td>  <td>{{ user.username }}</td></tr>
+            <tr><td>{{ 'profile.show.email'|trans }}</td>  <td>{{ user.email }}</td></tr>
+            <tr><td>{{ 'secteur'|trans }}</td>  <td> {{ user.secteur }}</td></tr>
+        </table>
+    </div>
+</center>

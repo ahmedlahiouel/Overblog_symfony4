@@ -1,0 +1,146 @@
+{% extends "testtestBundle::layoutusertache.html.twig" %}
+{% block ahmed1 %}
+    <li><a href="{{ path('affichehomesociete') }}">Home</a></li>
+
+    <li class="active"><a href="#">Manage OFFERS</a></li>
+    <li><a href="{{ path('desplay_view_postulation_user') }}">Manage POSTULATIONS</a></li>
+    <li><a href="{{ path('affichqcmsoc') }}">Management qcm</a></li>
+    <li><a href="{{ path('desplay_rendez_vous') }}">Appointment management</a></li>
+
+    <li><a href="{{ path('editcomptesoc') }}">EDIT COMPTE</a></li>
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <h1> Manage Offre </h1>
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                    style="width: 180px;"> Offre
+                </th>
+                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                    style="width: 180px;">ID offre
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">titre
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">description
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">salaire
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">lieu
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">active
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">categorie
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">qcm
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">supprimer
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">modifier
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in modeles %}
+
+
+                <tr role="row" class="odd">
+                    <td><img src="{{ asset('bundles/testtest/Front/img/offre.jpg') }}" width="100%" height="90px"
+                             alt="Offre">
+                    </td>
+
+                    <td> {{ model.id }} </td>
+                    <td>{{ model.titre }}</td>
+                    <td>{{ model.description }}</td>
+                    <td>{{ model.salaire }}</td>
+                    <td>{{ model.lieu }}</td>
+                    {% if model.active!=1 %}
+                        <td> not active <br>
+                        </td>
+                    {% else %}
+                        <td> Active <br>
+                        </td>
+
+
+                    {% endif %}
+                    <td>{{ model.categorie.type }}</td>
+
+                    <td>
+                        <form action="{{ path('desplay_qcm_soc', {'id': model.Qcm.id }) }}">
+                            <input type="submit" value="voire qcm" class="btn btn-lg btn-success btn-block"
+                                   style="width: 150px height: 150px"/>
+                        </form>
+
+
+                    </td>
+
+                    <td><a href="{{ path('deleteoffreuser', {'id': model.id }) }}"
+                           onclick="return confirm('are u sure?')">supprimer</a></td>
+                    <td><a href="{{ path('updateoffreuser', {'id': model.id }) }}"
+                           onclick="return confirm('are u sure?')">modifier</a></td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Offre</th>
+                <th rowspan="1" colspan="1">ID offre</th>
+                <th rowspan="1" colspan="1"> titre</th>
+                <th rowspan="1" colspan="1">description</th>
+                <th rowspan="1" colspan="1">salaire</th>
+                <th rowspan="1" colspan="1">lieu</th>
+                <th rowspan="1" colspan="1">active</th>
+                <th rowspan="1" colspan="1">categorie</th>
+                <th rowspan="1" colspan="1">Qcm</th>
+                <th rowspan="1" colspan="1">supprimer</th>
+                <th rowspan="1" colspan="1">modifier</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </div>
+
+
+
+    </div>
+
+
+    <form action="{{ path('ajoutoffre') }}">
+        <input type="submit" value="Ajout Offre" class="btn btn-lg btn-success btn-block"
+               style="width: 150px height: 150px"/>
+    </form>
+
+
+
+
+
+
+
+
+
+{% endblock fos_user_content %}

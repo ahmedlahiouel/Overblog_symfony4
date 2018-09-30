@@ -1,0 +1,58 @@
+<div id="load">
+
+    <center>
+        <h2> Qcm Result </h2>
+    </center>
+    <div class="box-body">
+        <center>
+            <h5> Titre Du Qcm : {{ enance }}</h5> <br>
+
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                        style="width: 180px;">Question
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Reponse
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for model in modeles %}
+
+                    <tr role="row" class="odd">
+                        <td>
+                            {{ model.enance }}
+                        </td>
+                        <td>
+                            {{ model.reponsecorrect.enance }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Question</th>
+                    <th rowspan="1" colspan="1"> Reponse</th>
+                </tr>
+                </tfoot>
+            </table>
+
+            Note recu : {{ resultat }}/{{ note }} <br>
+            <p> votre postulation est en attente d'etre accepté ou refusé par le recruteur, vous recevez un email après
+                la réponse </p>
+
+
+        </center>
+
+
+    </div>
+
+</div>

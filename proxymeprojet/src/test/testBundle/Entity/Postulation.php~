@@ -1,0 +1,183 @@
+<?php
+
+namespace test\testBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Postulation
+ *
+ * @ORM\Table(name="postulation")
+ * @ORM\Entity(repositoryClass="test\testBundle\Repository\PostulationRepository")
+ */
+class Postulation
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datepost", type="datetime")
+     */
+    private $datepost;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="note_qcm_recu", type="integer")
+     */
+    private $noteQcmRecu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etat", type="string", length=255)
+     */
+    private $etat;
+    /**
+     * @ORM\ManyToOne(targetEntity="test\userBundle\Entity\User")
+     * @ORM\JoinColumn(name="id_user",referencedColumnName="id",onDelete="cascade")
+     */
+    private $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="Offre")
+     * @ORM\JoinColumn(name="id_offre",referencedColumnName="id",onDelete="cascade")
+     */
+    private $offre;
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set datepost
+     *
+     * @param \DateTime $datepost
+     *
+     * @return Postulation
+     */
+    public function setDatepost($datepost)
+    {
+        $this->datepost = $datepost;
+
+        return $this;
+    }
+
+    /**
+     * Get datepost
+     *
+     * @return \DateTime
+     */
+    public function getDatepost()
+    {
+        return $this->datepost;
+    }
+
+    /**
+     * Set noteQcmRecu
+     *
+     * @param integer $noteQcmRecu
+     *
+     * @return Postulation
+     */
+    public function setNoteQcmRecu($noteQcmRecu)
+    {
+        $this->noteQcmRecu = $noteQcmRecu;
+
+        return $this;
+    }
+
+    /**
+     * Get noteQcmRecu
+     *
+     * @return int
+     */
+    public function getNoteQcmRecu()
+    {
+        return $this->noteQcmRecu;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param string $etat
+     *
+     * @return Postulation
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \test\userBundle\Entity\User $user
+     *
+     * @return Postulation
+     */
+    public function setUser(\test\userBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \test\userBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set offre
+     *
+     * @param \test\testBundle\Entity\Offre $offre
+     *
+     * @return Postulation
+     */
+    public function setOffre(\test\testBundle\Entity\Offre $offre = null)
+    {
+        $this->offre = $offre;
+
+        return $this;
+    }
+
+    /**
+     * Get offre
+     *
+     * @return \test\testBundle\Entity\Offre
+     */
+    public function getOffre()
+    {
+        return $this->offre;
+    }
+}

@@ -1,0 +1,135 @@
+{% extends "testtestBundle::layoutemploye.html.twig" %}
+{% block ahmed1 %}
+    <li><a href="{{ path('affichehomepersonne') }}">Home</a></li>
+
+    <li class="active"><a href="{{ path('showjobforuser') }}">Apply for jobs</a></li>
+    <li><a href="{{ path('desplay_postulation_candidat') }}">My postulation for offers</a></li>
+    <li><a href="{{ path('desplay_rendez_vous_user') }}">My appointments</a></li>
+    <li><a href="{{ path('editcomptepers') }}">EDIT COMPTE</a></li>
+
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <div id="load">
+
+        <center>
+            <h2> Qcm Offre </h2>
+        </center>
+        <div class="box-body">
+            Question : {{ enance }} <br>
+            <!--   reponse exacte:  <br> !-->
+            {% for model in modeles %}
+                <input class="messageCheckbox" type="checkbox" name='{{ model.enance }}'
+                       value='{{ model.enance }}'> {{ model.enance }}
+
+                <br>
+
+            {% endfor %}
+            <input type="submit" value="valider la reponse" id="val"/>
+            <input type="submit" value="passer a l'autre question" id="pass"/>
+
+
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+                    type="text/javascript"></script>
+
+
+            <script>
+                $("#val").click(function (event) {
+                    event.preventDefault();
+
+                    if (confirm(" confirmer le choix de la reponse ")) {
+                        var checkedValue = null;
+                        var inputElements = document.getElementsByClassName('messageCheckbox');
+                        for (var i = 0; inputElements[i]; ++i) {
+                            if (inputElements[i].checked) {
+                                checkedValue = inputElements[i].value;
+
+                            }
+                        }
+
+                        var p = '{{ postule }} ';
+                        var quest = '{{ idquestion }}';
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ path('updatepostul') }}",
+                            data: ({postule: p, question: quest, value: checkedValue}),
+                            dataType: 'json',
+                            success: function (result) {
+
+                            }
+                        });
+                        alert("Choix enregistrer clic sur passer");
+
+
+                    }
+                });
+
+
+            </script>
+            <script>
+                $("#pass").click(function (event) {
+                    event.preventDefault();
+                    var tab = [];
+                    {% for m in nouv %}
+                    var xx ={{ m.id }};
+                    tab.push(xx);
+                    {% endfor %}
+                    {% if nouv is empty %}
+                    var p = '{{ postule }} ';
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ path('desplay_result') }}",
+                        data: {postule: p},
+                        dataType: 'json',
+                        success: function (result, request) {
+                            var jsonTempStringified = JSON.stringify(result);
+                            var jsonTempStringifiedParsed = JSON.parse(jsonTempStringified);
+                            $("#load").empty();
+                            $("#load").html(jsonTempStringifiedParsed.data);
+
+                        }
+
+                    });
+
+
+
+
+
+
+                    {% else %}
+                    var p = '{{ postule }} ';
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ path('passer_desplay') }}",
+                        data: {postule: p, nouvquest: tab},
+                        dataType: 'json',
+                        success: function (result, request) {
+                            var jsonTempStringified = JSON.stringify(result);
+                            var jsonTempStringifiedParsed = JSON.parse(jsonTempStringified);
+                            $("#load").empty();
+                            $("#load").html(jsonTempStringifiedParsed.data);
+
+                        }
+
+                    });
+
+
+
+
+                    {% endif %}
+
+
+
+                });
+
+
+            </script>
+
+
+        </div>
+    </div>
+{% endblock fos_user_content %}

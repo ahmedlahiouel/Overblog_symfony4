@@ -1,0 +1,18 @@
+{% extends "testtestBundle::layoutfront.html.twig" %}
+{% block ahmed1 %}
+    <li class="active"><a href="{{ path('affichehomesociete') }}">Home</a></li>
+
+    <li><a href="{{ path('gestionoffreuser') }}">Manage OFFERS</a></li>
+    <li><a href="{{ path('desplay_view_postulation_user') }}">Manage POSTULATIONS</a></li>
+    <li><a href="{{ path('affichqcmsoc') }}">Management qcm</a></li>
+    <li><a href="{{ path('desplay_rendez_vous') }}">Appointment management</a></li>
+
+    <li><a href="{{ path('editcomptesoc') }}">EDIT COMPTE</a></li>
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+
+
+
+
+

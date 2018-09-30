@@ -1,0 +1,73 @@
+{% extends "testtestBundle::layoutusertache.html.twig" %}
+{% block ahmed1 %}
+    <li><a href="{{ path('affichehomesociete') }}">Home</a></li>
+
+    <li ><a href="{{ path('gestionoffreuser') }}">Manage OFFERS</a></li>
+    <li><a href="{{ path('desplay_view_postulation_user') }}">Manage POSTULATIONS</a></li>
+    <li><a href="{{ path('affichqcmsoc') }}">Management qcm</a></li>
+    <li class="active"><a href="{{ path('desplay_rendez_vous') }}">Appointment management</a></li>
+
+    <li><a href="{{ path('editcomptesoc') }}">EDIT COMPTE</a></li>
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+
+
+
+
+    <script src="{{ asset('bundles/testtest/Front/js/jquery-1.9.1.min.js') }}"></script>
+    <script src='{{ asset('bundles/testtest/node_modules/moment/min/moment.min.js')}}'></script>
+    <script src='{{ asset('bundles/testtest/node_modules/fullcalendar/dist/fullcalendar.min.js')}}'></script>
+
+    <link rel='stylesheet' href='{{ asset('bundles/testtest/node_modules/fullcalendar/dist/fullcalendar.css')}}' />
+
+    <div id='calendar'></div>
+
+    <script>
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultDate: '2017-08-15',
+            editable: true,
+            eventLimit: true,
+            events: [
+                {
+                    {% for model in modeles %}
+                    title: 'Rendez vous {{ model.user.username }}',
+                    start: '{{ model.date|date('Y-m-d H:i:s') }}',
+                    end: '{{ model.date|date_modify("+2 Hours")|date('Y-m-d H:i:s') }}',
+                    {% endfor %}
+                }
+            ]
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock fos_user_content %}

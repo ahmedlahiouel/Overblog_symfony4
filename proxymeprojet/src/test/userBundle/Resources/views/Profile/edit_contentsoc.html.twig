@@ -1,0 +1,63 @@
+{% trans_default_domain 'FOSUserBundle' %}
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+<center>
+
+    {{ form_start(form, { 'action': path('editcomptesoc'), 'attr': { 'class': 'editcomptesoc' } }) }}
+    <table>
+        <tr>
+            <td>
+                {{ form_label(form.email) }}
+            </td>
+            <td>
+                {{ form_widget(form.email) }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                {{ form_label(form.username) }}
+            </td>
+            <td>
+                {{ form_widget(form.username) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.secteur) }}
+            </td>
+            <td>
+                {{ form_widget(form.secteur) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label((form.current_password)) }}
+
+            </td>
+            <td>
+                {{ form_widget((form.current_password))}}
+                {{ form_errors((form.current_password)) }}
+            </td>
+        </tr>
+
+
+<tr><td> <strong> valider update </strong></td> <td><input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-lg btn-success btn-block"
+                                                           style="width: 150px height: 150px" /> </td></tr>
+        {{ form_end(form) }}
+        <tr><td> <strong> changer password </strong></td> <td>
+                <form action="{{ path('changePasswordso') }}">
+                    <input type="submit" value=" reset Password" class="btn btn-lg btn-success btn-block"
+                           style="width: 150px height: 150px"/>
+                </form>
+
+
+            </td></tr>
+
+    </table>
+
+</center>

@@ -1,0 +1,69 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SOCIETE: ROLE_USER
+        ROLE_EMPLOYE: ROLE_USER
+
+    access_denied_url: /login
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                default_target_path: hy
+                use_referer: false
+                success_handler: redirect.after.login
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+            logout:
+                invalidate_session: true
+                target: /login
+                #success_handler: redirect.after.logout
+
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: /gestion_gateg, role: ROLE_ADMIN }
+        - { path: hy5, role: ROLE_ADMIN }
+        - { path: hy6, role: ROLE_ADMIN }
+        - { path: /recherch, role: ROLE_ADMIN }
+        - { path: suppoffadmin, role: ROLE_ADMIN }
+        - { path: /listeoffre_admin, role: ROLE_ADMIN }
+        - { path: /recherche, role: ROLE_ADMIN }
+        - { path: acitvoffre, role: ROLE_ADMIN }
+        - { path: desacitvoffre, role: ROLE_ADMIN }
+        - { path: recherche_admin_qcm, role: ROLE_ADMIN }
+        - { path: affichehomesociete, role: ROLE_SOCIETE }
+        - { path: affichehomepersonne, role: ROLE_EMPLOYE }
+        - { path: refuser_postulation, role: ROLE_SOCIETE }
+        - { path: accepter_postulation, role: ROLE_SOCIETE }
+        - { path: desplay_view_postulation_user, role: ROLE_SOCIETE }
+        - { path: updateoffreuser, role: ROLE_SOCIETE }
+        - { path: deleteoffreuser, role: ROLE_SOCIETE }
+        - { path: modifqcmsoc, role: ROLE_SOCIETE }
+        - { path: suppqcmsoc, role: ROLE_SOCIETE }
+        - { path: affichqcmsoc, role: ROLE_SOCIETE }
+        - { path: affichinterfaceajout, role: ROLE_SOCIETE }
+        - { path: gestionoffreuser, role: ROLE_SOCIETE }
+        - { path: editcomptesoc, role: ROLE_SOCIETE }
+        - { path: crerrcomptesociete, role: ROLE_SOCIETE }
+        - { path: crerrcomptepers, role: ROLE_EMPLOYE }
+
+
+

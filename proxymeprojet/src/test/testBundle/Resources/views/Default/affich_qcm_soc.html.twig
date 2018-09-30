@@ -1,0 +1,67 @@
+{% extends "testtestBundle::layoutusertache.html.twig" %}
+{% block ahmed1 %}
+    <li><a href="{{ path('affichehomesociete') }}">Home</a></li>
+
+    <li class="active"><a href="{{ path('gestionoffreuser') }}">Manage OFFERS</a></li>
+    <li><a href="{{ path('desplay_view_postulation_user') }}">Manage POSTULATIONS</a></li>
+    <li><a href="{{ path('affichqcmsoc') }}">Management qcm</a></li>
+    <li><a href="{{ path('desplay_rendez_vous') }}">Appointment management</a></li>
+
+    <li><a href="{{ path('editcomptesoc') }}">EDIT COMPTE</a></li>
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <h1 class="page-header"> The QCM Of This Job Offer </h1>
+
+    <div class="box-body">
+        <center>
+            <h5> Titre Du Qcm : {{ enance }}</h5> <br>
+            <h5> Note D'Acceptation : {{ note }}</h5> <br>
+
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                   aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                        style="width: 180px;">Question
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Browser: activate to sort column ascending" style="width: 223px;">Reponse
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for model in modeles %}
+
+                    <tr role="row" class="odd">
+                        <td>
+                            {{ model.enance }}
+                        </td>
+                        <td>
+                            {{ model.reponsecorrect.enance }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1">Question</th>
+                    <th rowspan="1" colspan="1"> Reponse</th>
+                </tr>
+                </tfoot>
+            </table>
+        </center>
+
+
+    </div>
+
+
+
+
+{% endblock fos_user_content %}

@@ -1,0 +1,17 @@
+{% extends "testtestBundle::layoutfront.html.twig" %}
+{% block ahmed1 %}
+    <li class="active"><a href="{{ path('affichehomepersonne') }}">Home</a></li>
+
+    <li><a href="{{ path('showjobforuser') }}">Apply for jobs</a></li>
+    <li><a href="{{ path('desplay_postulation_candidat') }}">My postulation for offers</a></li>
+    <li><a href="{{ path('desplay_rendez_vous_user') }}">My appointments</a></li>
+    <li><a href="{{ path('editcomptepers') }}">EDIT COMPTE</a></li>
+
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+
+{% endblock %}
+
+
+
+

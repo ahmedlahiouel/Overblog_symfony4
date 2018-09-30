@@ -1,0 +1,145 @@
+{% extends "testtestBundle::layout.html.twig" %}
+{% block ahmed1 %}
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <form method="post" action="{{ path('rechoffre') }}">
+
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+
+                            <input name="titre" type="text" class="form-control" placeholder="chercher...">
+                            <span class="input-group-btn">
+       <button type="submit" value="Ajouter Categorie" class="btn btn-default"/>
+                                               <i class="fa fa-search"></i>
+                                </button>
+
+
+                                </span>
+
+                        </div>
+
+                        <!-- /input-group -->
+                    </li>
+                </form>
+
+                <li>
+                    <a href="{{ path('listeuser') }}"> Gestion des user </a>
+                </li>
+                <li>
+                    <a href="{{ path('hy') }}">Gestion des categories
+                    </a>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="{{ path('listeoffre1') }}"></i> Gestion des offres</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block ahmed %}
+    <h1 class="page-header"> Offre Disponibles </h1>
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                    style="width: 180px;">ID offre
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">titre
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">description
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">salaire
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">lieu
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">active
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">categorie
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">qcm
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">supprimer
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in modeles %}
+
+
+                <tr role="row" class="odd">
+                    <td> {{ model.id }} </td>
+                    <td>{{ model.titre }}</td>
+                    <td>{{ model.description }}</td>
+                    <td>{{ model.salaire }}</td>
+                    <td>{{ model.lieu }}</td>
+                    {% if model.active!=1 %}
+                        <td> not active <br>
+                            <a href="{{ path('acitvoffre', {'id': model.id }) }}"
+                               onclick="return confirm('are u sure?')">Activer</a>
+                        </td>
+                    {% else %}
+                        <td> Active <br>
+                            <a href="{{ path('desacitvoffre', {'id': model.id }) }}"
+                               onclick="return confirm('are u sure?')">Desactiver</a>
+                        </td>
+
+
+                    {% endif %}
+                    <td>{{ model.categorie.type }}</td>
+                    <td>
+                        <form action="{{ path('ajoutqcm', {'id': model.Qcm.id }) }}">
+                            <input type="submit" value="voire qcm" class="btn btn-lg btn-success btn-block"
+                                   style="width: 150px height: 150px"/>
+                        </form>
+
+
+                    </td>
+
+                    <td><a href="{{ path('suppoffadmin', {'id': model.id }) }}" onclick="return confirm('are u sure?')">Delete</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">ID offre</th>
+                <th rowspan="1" colspan="1"> titre</th>
+                <th rowspan="1" colspan="1">description</th>
+                <th rowspan="1" colspan="1">salaire</th>
+                <th rowspan="1" colspan="1">lieu</th>
+                <th rowspan="1" colspan="1">active</th>
+                <th rowspan="1" colspan="1">categorie</th>
+                <th rowspan="1" colspan="1">Qcm</th>
+                <th rowspan="1" colspan="1">supprimer</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </div>
+
+
+
+    </div>
+
+{% endblock %}

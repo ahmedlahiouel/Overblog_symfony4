@@ -1,0 +1,68 @@
+{% extends "testtestBundle::layoutusertache.html.twig" %}
+{% block ahmed1 %}
+    <li><a href="{{ path('affichehomesociete') }}">Home</a></li>
+
+    <li><a href="{{ path('gestionoffreuser') }}">Manage OFFERS</a></li>
+    <li><a href="#">Manage POSTULATIONS</a></li>
+    <li class="active"><a href="{{ path('affichqcmsoc') }}">Management qcm</a></li>
+    <li><a href="{{ path('desplay_rendez_vous') }}">Appointment management</a></li>
+
+    <li><a href="{{ path('editcomptesoc') }}">EDIT COMPTE</a></li>
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <h1> Edit JOB Qcm </h1>
+    {{ form_start(form) }}
+    <table>
+        <tr>
+            <td>
+                {{ form_label(form.enance) }}
+            </td>
+            <td>
+                {{ form_widget(form.enance) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.noteAccepter) }}
+            </td>
+            <td>
+                {{ form_widget(form.noteAccepter) }}
+            </td>
+        </tr>
+    </table>
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock fos_user_content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

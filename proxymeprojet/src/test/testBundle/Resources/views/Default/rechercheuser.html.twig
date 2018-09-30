@@ -1,0 +1,135 @@
+{% extends "testtestBundle::layout.html.twig" %}
+{% block ahmed1 %}
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <form method="post" action="{{ path('rechuser') }}">
+
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+
+                            <input name="nom" type="text" class="form-control" placeholder="chercher...">
+                            <span class="input-group-btn">
+       <button type="submit" value="Ajouter Categorie" class="btn btn-default"/>
+                                               <i class="fa fa-search"></i>
+                                </button>
+
+
+                                </span>
+
+                        </div>
+
+                        <!-- /input-group -->
+                    </li>
+                </form>
+
+                <li>
+                    <a href="{{ path('listeuser') }}"> Gestion des user </a>
+                </li>
+                <li>
+                    <a href="{{ path('hy') }}">Gestion des categories
+                    </a>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="{{ path('listeoffre1') }}"></i> Gestion des offres</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block ahmed %}
+    <h1 class="page-header"> usere cherché </h1>
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                    style="width: 180px;">ID
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending" style="width: 223px;">Nom
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending" style="width: 155px;">Email
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">Role
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">Etat
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">supprimer
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for model in modeles %}
+
+
+                <tr role="row" class="odd">
+                    <td> {{ model.id }} </td>
+                    <td>{{ model.username }}</td>
+                    <td>{{ model.email }}</td>
+                    <td>     {% for x in model.getRoles() %}
+                            {{ x }}
+                            {% if (model.getRoles()|length) == 1 %}
+                                <a href="{{ path('acitveadmin', {'id': model.id }) }}"
+                                   onclick="return confirm('are u sure?')">Activer comme Admin</a>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+
+                    </td>
+                    {% if model.enabled!=1 %}
+                        <td> not active <br>
+                            <a href="{{ path('acitvuser', {'id': model.id }) }}"
+                               onclick="return confirm('are u sure?')">Activer</a>
+
+                        </td>
+                    {% else %}
+                        <td> Active <br>
+                            <a href="{{ path('desacitvuser', {'id': model.id }) }}"
+                               onclick="return confirm('are u sure?')">Desctiver</a>
+
+                        </td>
+
+
+                    {% endif %}
+                    <td><a href="{{ path('deleteuser', {'id': model.id }) }}" onclick="return confirm('are u sure?')">supprimer</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th rowspan="1" colspan="1">Id</th>
+                <th rowspan="1" colspan="1">nom</th>
+                <th rowspan="1" colspan="1">email</th>
+                <th rowspan="1" colspan="1">role</th>
+                <th rowspan="1" colspan="1">etat</th>
+                <th rowspan="1" colspan="1">supprimer</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </div>
+
+
+
+    </div>
+
+{% endblock %}

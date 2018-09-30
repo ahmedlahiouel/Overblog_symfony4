@@ -1,0 +1,120 @@
+{% extends "testtestBundle::layoutemploye.html.twig" %}
+{% block ahmed1 %}
+    <li><a href="{{ path('affichehomepersonne') }}">Home</a></li>
+
+    <li class="active"><a href="{{ path('showjobforuser') }}">Apply for jobs</a></li>
+    <li><a href="{{ path('desplay_postulation_candidat') }}">My postulation for offers</a></li>
+    <li><a href="{{ path('desplay_rendez_vous_user') }}">My appointments</a></li>
+    <li><a href="{{ path('editcomptepers') }}">EDIT COMPTE</a></li>
+
+    <li><a href="{{ path('fos_user_security_logout') }}">DISCONNECTION</a></li>
+
+{% endblock %}
+{% block fos_user_content %}
+    <h1> Manage Offre </h1>
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+               aria-describedby="example1_info">
+            <thead>
+            <tr role="row">
+                <strong>
+                    <center>
+                        <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                            style="width: 180px;">Offre
+                        </th>
+                    </center>
+                    <center>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Browser: activate to sort column ascending" style="width: 223px;">titre
+                        </th>
+                    </center>
+                    <center>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Engine version: activate to sort column ascending" style="width: 155px;">
+                            description
+                        </th>
+                    </center>
+                    <center>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">salaire
+                        </th>
+                    </center>
+                    <center>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">lieu
+                        </th>
+                    </center>
+                    <center>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">categorie
+                            demandé
+                        </th>
+                    </center>
+                    <center>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending" style="width: 113px;">Postuler
+                        </th>
+                    </center>
+                </strong> </th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+
+            {% for model in modeles %}
+                {% if model.active==1 %}
+
+
+                    <tr role="row" class="odd">
+                        <td><img src="{{ asset('bundles/testtest/Front/img/oo.jpg') }}" width="100%" height="90px"
+                                 alt="Offre">
+                        </td>
+                        <td>{{ model.titre }}</td>
+                        <td>{{ model.description }}</td>
+                        <td>{{ model.salaire }}</td>
+                        <td>{{ model.lieu }}</td>
+
+
+                        <td>{{ model.categorie.type }}</td>
+
+                        <td>
+                            <form action="{{ path('postule_employe_offre', {'idoffre': model.id,'idqcm':model.Qcm.id }) }}">
+                                <input type="submit" value="postuler" class="btn btn-lg btn-success btn-block"
+                                       style="width: 100% height: 100%"/>
+                            </form>
+
+
+                        </td>
+
+
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock fos_user_content %}

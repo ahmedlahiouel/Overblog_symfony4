@@ -1,0 +1,53 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "testtestBundle::layout.html.twig" %}
+{% block ahmed1 %}
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <form method="post" action="{{ path('rechuser') }}">
+
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input name="typec" type="text" class="form-control" placeholder="chercher...">
+                            <span class="input-group-btn">
+       <button  type="submit"  value="Ajouter Categorie"class="btn btn-default"/>
+                                               <i class="fa fa-search"></i>
+                                </button>
+
+                                </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                </form>
+
+                <li>
+                    <a href="{{ path('listeuser') }}"> Gestion des user </a>
+                </li>
+                <li>
+                    <a href="{{ path('hyhy')}}">Gestion des categories"
+                    </a>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="{{ path('listeoffre1') }}"></i> Gestion  des offres</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+{% block ahmed %}
+    <h1 class="page-header"> Ajouter Admin</h1>
+    <center>
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+    {{ form_end(form) }}
+    </center>
+{% endblock %}

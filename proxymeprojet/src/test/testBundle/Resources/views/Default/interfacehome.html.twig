@@ -1,0 +1,10 @@
+{% extends "testtestBundle::layoutfront.html.twig" %}
+{% block ahmed1 %}
+    <li class="active"><a href="{{ path('affichehome') }}">Home</a></li>
+
+    <li><a href="{{ path('crerrcomptesociete') }}">Register as a company </a></li>
+    <li><a href="{{ path('crerrcomptepers') }}">Register as an employee </a></li>
+
+    <li><a href="{{ path('fos_user_security_login') }}">Log IN</a></li>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+services:
+  redirect.after.login:
+    class: test\testBundle\Redirection\AfterLoginRedirection
+    arguments: ['@router']
+  app.form.registration:
+   class: test\userBundle\Form\RegistrationType
+   tags:
+       - { name: form.type, alias: app_user_registration }
+  app.form.profile:
+   class: test\userBundle\Form\ProfileFormType
+   arguments: [%fos_user.model.user.class%]
+   tags:
+       - { name: form.type, alias: app_user_profile }
+  app.form.change:
+   class: test\userBundle\Form\ChangePasswordFormType
+   arguments: [%fos_user.model.user.class%]
+   tags:
+       - { name: form.type, alias: app_user_change_password  }
+  #redirect.after.logout:
+    #class: test\testBundle\Redirection\AfterLogoutRedirection
+    #arguments: ['@router', '@security.context']

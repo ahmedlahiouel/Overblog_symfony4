@@ -1,0 +1,182 @@
+testtest_homepage:
+    path:     /
+    defaults: { _controller: testtestBundle:Default:index }
+hyhy:
+    path:     /gestion_gateg
+    defaults: { _controller: testtestBundle:Nouveau:index }
+hy5:
+    path:     /supp_categ/{id}
+    defaults: { _controller: testtestBundle:Nouveau:delete }
+hy6:
+    path:     /modif_categ/{id}
+    defaults: { _controller: testtestBundle:Nouveau:mise }
+hy7:
+    path:     /ajout_categ
+    defaults: { _controller: testtestBundle:Nouveau:ajout }
+rechcateg:
+    path:     /recherch
+    defaults: { _controller: testtestBundle:Nouveau:recherche }
+ajoutqcm:
+    path:     /ajtq
+    defaults: { _controller: testtestBundle:Qcmt:index }
+ajoutoffre:
+    path:     /ajout_offre
+    defaults: { _controller: testtestBundle:Offret:index }
+affichehome:
+    path:     /affiche_home
+    defaults: { _controller: testtestBundle:Redirectuser:home }
+affichehomesociete:
+    path:     /affiche_homsociete
+    defaults: { _controller: testtestBundle:Redirectuser:societe }
+affichehomepersonne:
+    path:     /affiche_hompersonne
+    defaults: { _controller: testtestBundle:Redirectuser:personne }
+
+listeoffre1:
+    path:     /listeoffre_admin
+    defaults: { _controller: testtestBundle:Gestionadof:index }
+suppoffadmin:
+    path:     /supp_offre_admin/{id}affiche_home
+    defaults: { _controller: testtestBundle:Gestionadof:delete }
+rechoffre:
+    path:     /recherche
+    defaults: { _controller: testtestBundle:Gestionadof:recherche }
+acitvoffre:
+    path:     /activer_offre/{id}
+    defaults: { _controller: testtestBundle:Gestionadof:active }
+desacitvoffre:
+     path:     /desactiver_offre/{id}
+     defaults: { _controller: testtestBundle:Gestionadof:desactive }
+recherche_admin_qcm:
+      path:     /recherche_qcm_pour_admin/{id}
+      defaults: { _controller: testtestBundle:Qcmt:rechercheadminqcm }
+listeuser:
+      path:     /listeuser
+      defaults: { _controller: testtestBundle:GestionUser:index}
+deleteuser:
+      path:     /deleteu/{id}
+      defaults: { _controller: testtestBundle:GestionUser:delete}
+rechuser:
+      path:     /listeusercherche
+      defaults: { _controller: testtestBundle:GestionUser:recherche}
+acitvuser:
+      path:     /active/{id}
+      defaults: { _controller: testtestBundle:GestionUser:active}
+desacitvuser:
+      path:     /desactive/{id}
+      defaults: { _controller: testtestBundle:GestionUser:desactive}
+acitveadmin:
+      path:     /activeadmin/{id}
+      defaults: { _controller: testtestBundle:GestionUser:activeadmine}
+crerrcomptesociete:
+      path:     /creer_compte_soc
+      defaults: { _controller: testuserBundle:Registration:registersoc}
+crerrcomptepers:
+      path:     /creer_compte_pers
+      defaults: { _controller: testuserBundle:Registration:registerpers}
+editcomptesoc:
+      path:     /edit_compte_soc
+      defaults: { _controller: testuserBundle:Profile:editsoc}
+editcomptepers:
+      path:     /edit_compte_pers
+      defaults: { _controller: testuserBundle:Profile:editpers}
+gestionoffreuser:
+      path:     /gestion_offre_user
+      defaults: { _controller: testtestBundle:Gestionoffreuser:index}
+affichinterfaceajout:
+      path:     /interface_ajout_qcm
+      defaults: { _controller: testtestBundle:Qcmt:desplayformqcm}
+affichqcmsoc:
+    path:     /show
+    defaults: { _controller: testtestBundle:Qcmt:index }
+suppqcmsoc:
+    path:     /delete_qcm/{id}
+    defaults: { _controller: testtestBundle:Qcmt:supprime }
+modifqcmsoc:
+    path:     /update_qcm/{id}
+    defaults: { _controller: testtestBundle:Qcmt:mise }
+deleteoffreuser:
+    path:     /delete_offre_user/{id}
+    defaults: { _controller: testtestBundle:Offret:delete }
+updateoffreuser:
+    path:     /update_offre_user/{id}
+    defaults: { _controller: testtestBundle:Offret:update }
+showjobforuser:
+    path:     /show_job_for_employe
+    defaults: { _controller: testtestBundle:Usercont:show}
+postule_employe_offre:
+    path:     /postule_for_job/{idoffre}-{idqcm}
+    defaults: { _controller: testtestBundle:GestionQcmEmploye:show_QCM_Offre }
+my_symfony_route:
+    path:     /get-filtered-list
+    defaults: { _controller: testtestBundle:Qcmt:getFilteredList }
+    requirements:
+        _method:  POST
+my_symfony_route2:
+    path:     /get-filtered-list2
+    defaults: { _controller: testtestBundle:Qcmt:setquestionqcm }
+    requirements:
+        _method:  POST
+desplay_view_postulation_user:
+    path:     /Postulation_Show
+    defaults: { _controller: testtestBundle:Postulation_c:index }
+    requirements:
+        _method:  POST
+accepter_postulation:
+    path:     /activer_postulation/{id}
+    defaults: { _controller: testtestBundle:Postulation_c:accepter }
+refuser_postulation:
+    path:     /refuser_postulation/{id}
+    defaults: { _controller: testtestBundle:Postulation_c:refuser }
+ajoutrendezvous:
+    path:     /ajouter_rendezvous/{user}-{offre}
+    defaults: { _controller: testtestBundle:Postulation_c:ajout_rendez }
+desplay_rendez_vous:
+    path:     /rendez_vous
+    defaults: { _controller: testtestBundle:Postulation_c:desplay_rendez_vous }
+delete_rendez_vous:
+    path:     /delete_rendez_vous/{id}-{user}-{offre}
+    defaults: { _controller: testtestBundle:Postulation_c:delete_rendez_vous }
+update_rendez_vous:
+    path:     /update_rendez_vous/{id}-{user}-{offre}
+    defaults: { _controller: testtestBundle:Postulation_c:update_rendez_vous }
+desplay_rendez_vous_user:
+    path:     /desplay_rendez_vous_candidat
+    defaults: { _controller: testtestBundle:Rendez_vous_c:view_rendez_user }
+desplay_postulation_candidat:
+    path:     /desplay_postul_candidat
+    defaults: { _controller: testtestBundle:Postulation_c:view_postulation }
+desplay_qcm_admin:
+    path:     /desplay_qcm/{id}
+    defaults: { _controller: testtestBundle:Qcmt:view_Qcm_back }
+desplay_qcm_soc:
+    path:     /desplay_qcm_soc/{id}
+    defaults: { _controller: testtestBundle:Qcmt:view_Qcm_back_soc }
+affichreponse:
+    path:     /postule_for_job/
+    defaults: { _controller: testtestBundle:GestionQcmEmploye:show_QCM_rep }
+
+changePasswordso:
+    path:     /change_pass_soc
+    defaults: { _controller: testuserBundle:Reset:changePasswordsoc }
+changePasswordpers:
+    path:     /change_pass_pers
+    defaults: { _controller: testuserBundle:Reset:changePasswordpers }
+updatepostul:
+    path:     /set_postu
+    defaults: { _controller: testtestBundle:GestionQcmEmploye:increment }
+    requirements:
+        _method:  POST
+passer_desplay:
+    path:     /desplay_pass
+    defaults: { _controller: testtestBundle:GestionQcmEmploye:intermidiaire }
+    requirements:
+        _method:  POST
+desplay_result:
+    path:     /desplay_result_qcm
+    defaults: { _controller: testtestBundle:GestionQcmEmploye:resultatqcm }
+    requirements:
+        _method:  POST
+affichcalender:
+    path:     /desplay_calender
+    defaults: { _controller: testtestBundle:Nouveau:affich_calender }
