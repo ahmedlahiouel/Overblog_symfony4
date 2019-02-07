@@ -1,0 +1,29 @@
+Mutation:
+  type: "object"
+  config:
+    fields:
+      place_new:
+        type: "Place!"
+        args:
+            place:
+              type: "PlaceInput!"
+        resolve: "@=mutation('placeNew', [args['place']])"
+        description: "Add new place."
+      theme_create:
+        type: "Theme!"
+        args:
+            theme:
+              type: "ThemeInput!"
+        resolve: "@=mutation('theme_create', [args['theme']])"
+        description: "Edit theme infos."
+      place_link_theme:
+        type: "Place!"
+        args:
+            placeId:
+              type: "ID!"
+            themeId:
+              type: "ID!"
+        resolve: "@=mutation('placeLinkTheme', [args['placeId'], args['themeId']])"
+        description: "Add a theme to a place."
+
+

@@ -1,0 +1,7 @@
+PlaceCollection:
+  type: "object"
+  config:
+    fields:
+      places:
+        type: "[Place]"
+        description: "places"

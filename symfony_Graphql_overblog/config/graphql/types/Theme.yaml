@@ -1,0 +1,15 @@
+Theme:
+  type: "object"
+  config:
+    fields:
+      id:
+        type: "ID!"
+      name:
+        type: "String!"
+
+ThemeInput:
+  type: "input-object"
+  config:
+    fields:
+      name:
+        type: "String!"

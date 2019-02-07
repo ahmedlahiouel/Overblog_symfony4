@@ -1,0 +1,17 @@
+Place:
+  type: "object"
+  config:
+    fields:
+      id:
+        type: "ID!"
+      name:
+        type: "String!"
+      themes:
+        type: "Theme"
+
+PlaceInput:
+  type: "input-object"
+  config:
+    fields:
+      name:
+        type: "String!"

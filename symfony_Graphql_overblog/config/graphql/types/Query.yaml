@@ -1,0 +1,21 @@
+Query:
+  type: "object"
+  config:
+    fields:
+      place:
+        type: "Place"
+        args:
+            id:
+                description: "get place by id"
+                type: "String"
+        resolve: "@=resolver('Place', [args['id']])"
+      theme:
+        type: "Theme"
+        args:
+            id:
+                description: "get theme by id"
+                type: "String"
+        resolve: "@=resolver('Theme', [args['id']])"
+      places_collection:
+        type: "PlaceCollection"
+        resolve: "@=resolver('PlaceList', [])"
